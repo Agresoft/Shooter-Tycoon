@@ -3,6 +3,9 @@ Shooter-Tycoon
 
 Another simple clicker game, this is simply a test.
 
+-----------  Version 0.0.2_4  -----------
+- A very tiny update, added a limit to the amount of bullets you can have at one time. Sell the bullets to reset the limit back to zero.
+
 -----------  Version 0.0.2_3  -----------    
 - Added a button that allows you to sell
 all of your current bullets. Each bullet 
