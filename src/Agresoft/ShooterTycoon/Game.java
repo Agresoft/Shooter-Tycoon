@@ -24,17 +24,18 @@ public class Game extends JFrame {
 
 	private JPanel contentPane;
 
-	public String VERSION = "0.0.2_3";
+	public String VERSION = "0.0.2_4";
 
-	public static int bulletCreateRate = 5;
+	public static int bulletCreateRate = 101;
 	public static double bulletSellRate = 0.25;
 	public static int bullets = 0;
 	public static double cash = 0;
+	public static int bullet_limit = 1000;
 
 	private static final Icon bullet_pistol_1 = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/bullets/Bullet_Pistol.png"));
 	private static final Icon bullet_pistol_2 = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/bullets/Bullet_Pistol_2.png"));
 
-	private static JLabel lblBullets = new JLabel("You have made " + bullets + " Bullets!");
+	private static JLabel lblBullets = new JLabel("You have made " + bullets + " of " + bullet_limit + " Bullets!");
 	private static JLabel lblMoney = new JLabel("You have made " + cash + " Money");
 
 	private Border emptyBorder = BorderFactory.createEmptyBorder();
@@ -73,7 +74,7 @@ public class Game extends JFrame {
 		bulletCreate.setBorder(emptyBorder);
 		contentPane.add(bulletCreate);
 
-		lblBullets.setBounds(34, 69, 199, 14);
+		lblBullets.setBounds(34, 69, 231, 14);
 		contentPane.add(lblBullets);
 		
 		JLabel lblVersion = new JLabel("Version: " + VERSION);
@@ -81,7 +82,7 @@ public class Game extends JFrame {
 		contentPane.add(lblVersion);
 		
 
-		lblMoney.setBounds(34, 103, 199, 14);
+		lblMoney.setBounds(34, 103, 231, 14);
 		contentPane.add(lblMoney);
 		
 		JButton btnSellbutton = new JButton("Sell Bullets");
@@ -112,8 +113,11 @@ public class Game extends JFrame {
 	
 	//Self explanatory, adds bullets.
 	private void addBullets() {
-		bullets += bulletCreateRate;
-		lblBullets.setText("You have made " + bullets + " Bullets!");
+		
+		if (bullets < bullet_limit && bullets + bulletCreateRate < bullet_limit){
+			bullets += bulletCreateRate;
+		}
+		lblBullets.setText("You have made " + bullets + " of " + bullet_limit + " Bullets!");
 	}
 	
 	//Also pretty self explanatory, sells your current bullets.
@@ -122,7 +126,7 @@ public class Game extends JFrame {
 			cash += bullets * .25;
 			bullets = 0;
 			lblMoney.setText("You have made " + cash + " Dollars!");
-			lblBullets.setText("You have made " + bullets + " Bullets!");
+			lblBullets.setText("You have made " + bullets + " of " + bullet_limit + " Bullets!");
 		}
 	}
 }
