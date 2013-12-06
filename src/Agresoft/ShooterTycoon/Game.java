@@ -17,21 +17,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
+import javax.swing.JTabbedPane;
 
 public class Game extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
 
-	public String VERSION = "0.0.1_1";
+	public String VERSION = "0.0.2_3";
 
-	public static int bulletCreateRate = 16;
+	public static int bulletCreateRate = 5;
+	public static double bulletSellRate = 0.25;
 	public static int bullets = 0;
+	public static double cash = 0;
 
 	private static final Icon bullet_pistol_1 = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/bullets/Bullet_Pistol.png"));
 	private static final Icon bullet_pistol_2 = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/bullets/Bullet_Pistol_2.png"));
 
 	private static JLabel lblBullets = new JLabel("You have made " + bullets + " Bullets!");
+	private static JLabel lblMoney = new JLabel("You have made " + cash + " Money");
 
 	private Border emptyBorder = BorderFactory.createEmptyBorder();
 
@@ -75,6 +79,21 @@ public class Game extends JFrame {
 		JLabel lblVersion = new JLabel("Version: " + VERSION);
 		lblVersion.setBounds(10, 635, 113, 14);
 		contentPane.add(lblVersion);
+		
+
+		lblMoney.setBounds(34, 103, 199, 14);
+		contentPane.add(lblMoney);
+		
+		JButton btnSellbutton = new JButton("Sell Bullets");
+		btnSellbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sellBullets();
+			}
+		});
+		btnSellbutton.setBounds(34, 159, 113, 23);
+		contentPane.add(btnSellbutton);
+		
+		
 	}
 
 	public static void main(String[] args) {
@@ -90,8 +109,20 @@ public class Game extends JFrame {
 		});
 	}
 
+	
+	//Self explanatory, adds bullets.
 	private void addBullets() {
 		bullets += bulletCreateRate;
 		lblBullets.setText("You have made " + bullets + " Bullets!");
+	}
+	
+	//Also pretty self explanatory, sells your current bullets.
+	private void sellBullets(){
+		if(bullets > 0){
+			cash += bullets * .25;
+			bullets = 0;
+			lblMoney.setText("You have made " + cash + " Dollars!");
+			lblBullets.setText("You have made " + bullets + " Bullets!");
+		}
 	}
 }
