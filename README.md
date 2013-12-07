@@ -3,6 +3,29 @@ Shooter-Tycoon
 
 Another simple clicker game, this is simply a test.
 
+-----------  Version 0.0.3_6  -----------
+- Added a working tab system! The tab system makes it possible to add
+different tabs which hold different content. Currently there are only 2
+tabs, the main game tab and the upgrades tab. The upgrades tab is
+currently empty, with plans to add upgrades in 0.0.4. This took me much
+much longer to figure out how to do than I expected. Enjoy it.
+- This is a bit under-the-hood, but I reworked the drawing engine so now
+the main game tab is drawn through it's own class(I should have made it
+this way from the beginning).
+- Added the version number to the bottom left hand corner of the main
+game tab, just so you know what you're running.
+
+What's Next:
+- Upgrades! 
+- More tabs(Probably a stats tab. I'll think of more(I swear))
+- I have a list of things I want to add of my phone, this list is things
+I can do now, not later on.
+- I have mixed feelings on adding this, but a leveling system. You start
+at level 1 of course and then as you create bullets(and later guns(after
+I add it of course)) you gain XP. Leveling up increases the amount of
+bullets you can make at one time. Like I said I have mixed feelings
+about this so feedback is greatly appreciated.
+
 -----------  Version 0.0.2_4  -----------
 - A very tiny update, added a limit to the amount of bullets you can have at one time. Sell the bullets to reset the limit back to zero.
 
