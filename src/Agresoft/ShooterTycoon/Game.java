@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
@@ -16,29 +17,31 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
+import javax.swing.JScrollBar;
+import javax.swing.JProgressBar;
 
 public class Game extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	private JPanel contentPane;
+	private static Agresoft.ShooterTycoon.tabs.mainGame mainGame = new Agresoft.ShooterTycoon.tabs.mainGame();
 
-	public String VERSION = "0.0.2_4";
+	private static JPanel upgradeScreen = new JPanel();
 
-	public static int bulletCreateRate = 101;
+	private static JTabbedPane pane = new JTabbedPane();
+
+	public static String VERSION = "0.0.3_6";
+
+	public static int bulletCreateRate = 16;
 	public static double bulletSellRate = 0.25;
 	public static int bullets = 0;
 	public static double cash = 0;
 	public static int bullet_limit = 1000;
 
-	private static final Icon bullet_pistol_1 = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/bullets/Bullet_Pistol.png"));
-	private static final Icon bullet_pistol_2 = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/bullets/Bullet_Pistol_2.png"));
-
-	private static JLabel lblBullets = new JLabel("You have made " + bullets + " of " + bullet_limit + " Bullets!");
-	private static JLabel lblMoney = new JLabel("You have made " + cash + " Money");
-
-	private Border emptyBorder = BorderFactory.createEmptyBorder();
+	public static JLabel lblMoney2 = new JLabel("You have: " + cash + " Dollars to spend.");
+	private final JLabel lblNewLabel = new JLabel(VERSION);
 
 	public Game() {
 
@@ -47,57 +50,25 @@ public class Game extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1100, 688);
 		setLocationRelativeTo(null);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
-		final JButton bulletCreate = new JButton(bullet_pistol_1);
-		bulletCreate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				addBullets();
-
-			}
-		});
-		bulletCreate.setContentAreaFilled(false);
-		bulletCreate.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent arg0) {
-				bulletCreate.setIcon(bullet_pistol_2);
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				bulletCreate.setIcon(bullet_pistol_1);
-			}
-		});
-		bulletCreate.setBackground(SystemColor.text);
-		bulletCreate.setBounds(483, 266, 128, 128);
-		bulletCreate.setBorder(emptyBorder);
-		contentPane.add(bulletCreate);
-
-		lblBullets.setBounds(34, 69, 231, 14);
-		contentPane.add(lblBullets);
 		
-		JLabel lblVersion = new JLabel("Version: " + VERSION);
-		lblVersion.setBounds(10, 635, 113, 14);
-		contentPane.add(lblVersion);
-		
+		lblNewLabel.setBounds(10, 607, 166, 14);
+		mainGame.add(lblNewLabel);
 
-		lblMoney.setBounds(34, 103, 231, 14);
-		contentPane.add(lblMoney);
-		
-		JButton btnSellbutton = new JButton("Sell Bullets");
-		btnSellbutton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				sellBullets();
-			}
-		});
-		btnSellbutton.setBounds(34, 159, 113, 23);
-		contentPane.add(btnSellbutton);
-		
-		
+		pane.add("Main", mainGame);
+		pane.add("Upgrades", upgradeScreen);
+		upgradeScreen.setLayout(null);
+
+		lblMoney2.setBounds(10, 11, 325, 14);
+		upgradeScreen.add(lblMoney2);
+
+		getContentPane().add(pane);
+
 	}
 
+	// The main method
+
 	public static void main(String[] args) {
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -110,23 +81,24 @@ public class Game extends JFrame {
 		});
 	}
 
-	
-	//Self explanatory, adds bullets.
-	private void addBullets() {
-		
-		if (bullets < bullet_limit && bullets + bulletCreateRate < bullet_limit){
+	// Self explanatory, adds bullets.
+	public static void addBullets() {
+
+		if (bullets < bullet_limit && bullets + bulletCreateRate < bullet_limit) {
 			bullets += bulletCreateRate;
 		}
-		lblBullets.setText("You have made " + bullets + " of " + bullet_limit + " Bullets!");
+		mainGame.lblBullets.setText("You have made " + bullets + " of " + bullet_limit + " Bullets!");
 	}
-	
-	//Also pretty self explanatory, sells your current bullets.
-	private void sellBullets(){
-		if(bullets > 0){
+
+	// Also pretty self explanatory, sells your current bullets.
+	public static void sellBullets() {
+		if (bullets > 0) {
 			cash += bullets * .25;
 			bullets = 0;
-			lblMoney.setText("You have made " + cash + " Dollars!");
-			lblBullets.setText("You have made " + bullets + " of " + bullet_limit + " Bullets!");
+			mainGame.lblMoney.setText("You have made " + cash + " Dollars!");
+			mainGame.lblBullets.setText("You have made " + bullets + " of " + bullet_limit + " Bullets!");
+			lblMoney2.setText("You have: " + cash + " Dollars to spend.");
 		}
+
 	}
 }
