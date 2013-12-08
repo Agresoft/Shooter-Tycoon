@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.math.BigDecimal;
 
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
@@ -32,13 +33,14 @@ public class Game extends JFrame {
 
 	private static JTabbedPane pane = new JTabbedPane();
 
-	public static String VERSION = "0.0.3_6";
+	public static String VERSION = "0.0.2_6";
 
-	public static int bulletCreateRate = 16;
-	public static double bulletSellRate = 0.25;
+	public static int bulletCreateRate = 4;
+	public static double bulletSellRate = 10;
 	public static int bullets = 0;
-	public static double cash = 0;
-	public static int bullet_limit = 1000;
+	public static int cents = 0;
+	public static String cash = "$" + (cents / 100) + "." + (cents % 100);
+	public static int bullet_limit = 250;
 
 	public static JLabel lblMoney2 = new JLabel("You have: " + cash + " Dollars to spend.");
 	private final JLabel lblNewLabel = new JLabel(VERSION);
@@ -50,7 +52,7 @@ public class Game extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1100, 688);
 		setLocationRelativeTo(null);
-		
+
 		lblNewLabel.setBounds(10, 607, 166, 14);
 		mainGame.add(lblNewLabel);
 
@@ -84,7 +86,7 @@ public class Game extends JFrame {
 	// Self explanatory, adds bullets.
 	public static void addBullets() {
 
-		if (bullets < bullet_limit && bullets + bulletCreateRate < bullet_limit) {
+		if (bullets + bulletCreateRate < bullet_limit) {
 			bullets += bulletCreateRate;
 		}
 		mainGame.lblBullets.setText("You have made " + bullets + " of " + bullet_limit + " Bullets!");
@@ -93,12 +95,23 @@ public class Game extends JFrame {
 	// Also pretty self explanatory, sells your current bullets.
 	public static void sellBullets() {
 		if (bullets > 0) {
-			cash += bullets * .25;
+			if (cents%100 >= 0 && cents%100 <= 9){
+				cash = "$" + (cents / 100) + ".0" + (cents % 100);
+			}
+			cents += bullets * bulletSellRate;
 			bullets = 0;
-			mainGame.lblMoney.setText("You have made " + cash + " Dollars!");
-			mainGame.lblBullets.setText("You have made " + bullets + " of " + bullet_limit + " Bullets!");
+			cash = "$" + (cents / 100) + "." + (cents % 100);
+			mainGame.lblMoney.setText("You have made " + cash);
+			mainGame.lblBullets.setText("You have made: " + bullets + " of " + bullet_limit + " Bullets!");
 			lblMoney2.setText("You have: " + cash + " Dollars to spend.");
 		}
 
 	}
+
+	public static void convertCents() {
+		if (cents%100 >= 0 && cents%100 <= 9){
+			cash = "$" + (cents / 100) + ".0" + (cents % 100);
+		}
+	}
+
 }
