@@ -3,6 +3,10 @@ Shooter-Tycoon
 
 Another simple clicker game, this is simply a test.
 
+-----------  Version 0.0.3_7  -----------
+- Fixed a bug (This took me a couple of very annoying Google searching hours to fix)
+that caused your money to have very long decimals like 12.000000000001
+
 -----------  Version 0.0.3_6  -----------
 - Added a working tab system! The tab system makes it possible to add
 different tabs which hold different content. Currently there are only 2
