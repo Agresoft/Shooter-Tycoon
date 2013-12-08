@@ -33,7 +33,7 @@ public class Game extends JFrame {
 
 	private static JTabbedPane pane = new JTabbedPane();
 
-	public static String VERSION = "0.0.2_6";
+	public static String VERSION = "0.0.3_7";
 
 	public static int bulletCreateRate = 4;
 	public static double bulletSellRate = 10;
