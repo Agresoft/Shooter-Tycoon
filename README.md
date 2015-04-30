@@ -4,17 +4,17 @@ Shooter-Tycoon
 Another simple clicker game, this is simply a test.
 
 ----------- Version 0.0.4 Build 9  ----------- 
- - Added basic infrastructure for the upgrades tab
- - Included a leveling system for creating bullets. Leveling up lets you create one more bullet each click and increases the value of each bullet by 1.25 (Will be adjusted, just getting the basic structure in)
- - Reworked a bit of the overall code. I left the poor project quite messy when I was last working on it.
- - Moved mostly everything dealing with the upgrade tab to it's own class. I was going to do this before, however I was still very new to java and wasn't sure how to go about it.
+ - Added basic infrastructure for the upgrades tab   
+ - Included a leveling system for creating bullets. Leveling up lets you create one more bullet each click and increases the value of each bullet by 1.25 (Will be adjusted, just getting the basic structure in)   
+ - Reworked a bit of the overall code. I left the poor project quite messy when I was last working on it.   
+ - Moved mostly everything dealing with the upgrade tab to it's own class. I was going to do this before, however I was still very new to java and wasn't sure how to go about it.    
  ----What's Next----
- - A more thought out and well adjusted leveling system.
- - A few more "skills" to grind out
- - A new tab dedicated to your levels
- - A "true" upgrades tab, dealing with different tech. Such as "A better tool for creating bullets" or "A new type of bullet" etc. etc.
- - Different types of bullets, all with their own art. Possibly going into gun production instead of bullets as a possible upgrade path.
- - Overall better code, I still feel as though a lot of the code is messy and not very well  thought out.
+ - A more thought out and well adjusted leveling system.   
+ - A few more "skills" to grind out   
+ - A new tab dedicated to your levels   
+ - A "true" upgrades tab, dealing with different tech. Such as "A better tool for creating bullets" or "A new type of bullet" etc. etc.   
+ - Different types of bullets, all with their own art. Possibly going into gun production instead of bullets as a possible upgrade path.   
+ - Overall better code, I still feel as though a lot of the code is messy and not very well  thought out.   
 
 -----------  Version 0.0.3 Build 7  -----------
 - Fixed a bug (This took me a couple of very annoying Google searching hours to fix)
