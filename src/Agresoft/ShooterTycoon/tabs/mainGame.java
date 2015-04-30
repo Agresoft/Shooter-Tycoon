@@ -21,18 +21,14 @@ public class mainGame extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public static String VERSION = Game.VERSION;
-
-	public static double cents = Game.cents;
-	public static String cash = Game.cash;
 	public static int bullets = Game.bullets;
-	public static int bullet_limit = Game.bullet_limit;
 
 	public static final Icon bullet_pistol_1 = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/bullets/Bullet_Pistol.png"));
 	public static final Icon bullet_pistol_2 = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/bullets/Bullet_Pistol_2.png"));
 
-	public JLabel lblBullets = new JLabel("You have made " + bullets + " of " + bullet_limit + " Bullets!");
-	public JLabel lblMoney = new JLabel("You have made $0");
+	public JLabel lblBullets = new JLabel();
+	public JLabel lblMoney = new JLabel();
+	public JLabel lblValue = new JLabel();
 	
 	public Border emptyBorder = BorderFactory.createEmptyBorder();
 
@@ -67,6 +63,9 @@ public class mainGame extends JPanel {
 
 		lblMoney.setBounds(34, 103, 231, 14);
 		add(lblMoney);
+
+		lblValue.setBounds(34, 86, 231, 14);
+		add(lblValue);
 
 		JButton btnSellbutton = new JButton("Sell Bullets");
 		btnSellbutton.addActionListener(new ActionListener() {

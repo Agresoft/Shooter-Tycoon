@@ -1,5 +1,8 @@
 package Agresoft.ShooterTycoon;
 
+import Agresoft.ShooterTycoon.tabs.UpgradeTab;
+import Agresoft.ShooterTycoon.tabs.mainGame;
+
 import java.awt.EventQueue;
 
 import javax.swing.BorderFactory;
@@ -27,22 +30,21 @@ import javax.swing.JProgressBar;
 public class Game extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	private static Agresoft.ShooterTycoon.tabs.mainGame mainGame = new Agresoft.ShooterTycoon.tabs.mainGame();
-
-	private static JPanel upgradeScreen = new JPanel();
+	public static mainGame mainGame = new mainGame();
+	public static UpgradeTab upTab = new UpgradeTab();
 
 	private static JTabbedPane pane = new JTabbedPane();
 
-	public static String VERSION = "0.0.3_7";
+	public static String VERSION = "0.0.4_9";
 
-	public static int bulletCreateRate = 4;
+	public static int bulletCreateRate = 1;
 	public static double bulletSellRate = 10;
 	public static int bullets = 0;
-	public static int cents = 0;
+	public static long cents = 0L;
 	public static String cash = "$" + (cents / 100) + "." + (cents % 100);
 	public static int bullet_limit = 250;
 
-	public static JLabel lblMoney2 = new JLabel("You have: " + cash + " Dollars to spend.");
+
 	private final JLabel lblNewLabel = new JLabel(VERSION);
 
 	public Game() {
@@ -57,11 +59,9 @@ public class Game extends JFrame {
 		mainGame.add(lblNewLabel);
 
 		pane.add("Main", mainGame);
-		pane.add("Upgrades", upgradeScreen);
-		upgradeScreen.setLayout(null);
+		pane.add("Upgrades", upTab);
 
-		lblMoney2.setBounds(10, 11, 325, 14);
-		upgradeScreen.add(lblMoney2);
+
 
 		getContentPane().add(pane);
 
@@ -74,13 +74,14 @@ public class Game extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					updateLabels();
 					Game frame = new Game();
 					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+}
+});
 	}
 
 	// Self explanatory, adds bullets.
@@ -88,8 +89,14 @@ public class Game extends JFrame {
 
 		if (bullets + bulletCreateRate < bullet_limit) {
 			bullets += bulletCreateRate;
+			upTab.createLevelXP++;
+			if(upTab.levelUpCreate()) {
+				bulletCreateRate++;
+				bulletSellRate =(int)bulletSellRate *  1.25;
+			}
+
 		}
-		mainGame.lblBullets.setText("You have made " + bullets + " of " + bullet_limit + " Bullets!");
+		updateLabels();
 	}
 
 	// Also pretty self explanatory, sells your current bullets.
@@ -100,10 +107,7 @@ public class Game extends JFrame {
 			}
 			cents += bullets * bulletSellRate;
 			bullets = 0;
-			cash = "$" + (cents / 100) + "." + (cents % 100);
-			mainGame.lblMoney.setText("You have made " + cash);
-			mainGame.lblBullets.setText("You have made: " + bullets + " of " + bullet_limit + " Bullets!");
-			lblMoney2.setText("You have: " + cash + " Dollars to spend.");
+			updateLabels();
 		}
 
 	}
@@ -112,6 +116,17 @@ public class Game extends JFrame {
 		if (cents%100 >= 0 && cents%100 <= 9){
 			cash = "$" + (cents / 100) + ".0" + (cents % 100);
 		}
+	}
+
+	public static void updateLabels() {
+		cash = "$" + (cents / 100) + "." + (cents % 100);
+		mainGame.lblMoney.setText("You have made " + cash);
+		mainGame.lblBullets.setText("You have made: " + bullets + " of " + bullet_limit + " Bullets!");
+		mainGame.lblValue.setText("Your bullets are worth: $" + (bulletSellRate / 100) + "0");
+		upTab.lblMoney2.setText("You have: " + cash + " Dollars to spend.");
+		upTab.lblXP.setText(upTab.createLevelXP +  "/" + upTab.levelRequirement + " xp to next level");
+		upTab.lblLevel.setText("Bullet Create Level: " + upTab.createLevel);
+		mainGame.lblBullets.setText("You have made " + bullets + " of " + bullet_limit + " Bullets!");
 	}
 
 }
