@@ -35,7 +35,7 @@ public class Game extends JFrame {
 
 	private static JTabbedPane pane = new JTabbedPane();
 
-	public static String VERSION = "0.0.4_9";
+	public static String VERSION = "0.0.4_10";
 
 	public static int bulletCreateRate = 1;
 	public static double bulletSellRate = 10;
@@ -74,6 +74,7 @@ public class Game extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					System.out.println(upTab.xpForLevel(upTab.createLevel));
 					updateLabels();
 					Game frame = new Game();
 					frame.setVisible(true);
@@ -89,10 +90,10 @@ public class Game extends JFrame {
 
 		if (bullets + bulletCreateRate < bullet_limit) {
 			bullets += bulletCreateRate;
-			upTab.createLevelXP++;
+			upTab.createLevelXP+= 10;
 			if(upTab.levelUpCreate()) {
 				bulletCreateRate++;
-				bulletSellRate =(int)bulletSellRate *  1.25;
+				bulletSellRate = Math.floor(bulletSellRate *  1.25);
 			}
 
 		}
@@ -124,7 +125,7 @@ public class Game extends JFrame {
 		mainGame.lblBullets.setText("You have made: " + bullets + " of " + bullet_limit + " Bullets!");
 		mainGame.lblValue.setText("Your bullets are worth: $" + (bulletSellRate / 100) + "0");
 		upTab.lblMoney2.setText("You have: " + cash + " Dollars to spend.");
-		upTab.lblXP.setText(upTab.createLevelXP +  "/" + upTab.levelRequirement + " xp to next level");
+		upTab.lblXP.setText(upTab.createLevelXP +  "/" + upTab.xpForLevel(upTab.createLevel) + " xp to next level");
 		upTab.lblLevel.setText("Bullet Create Level: " + upTab.createLevel);
 		mainGame.lblBullets.setText("You have made " + bullets + " of " + bullet_limit + " Bullets!");
 	}

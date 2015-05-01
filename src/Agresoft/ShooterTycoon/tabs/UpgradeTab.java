@@ -13,10 +13,8 @@ public class UpgradeTab extends JPanel{
 
     public static int createLevel = 1;
     public static long createLevelXP = 0;
-    public static int levelRequirement = 10;
-    public static double levelIncreaseMultiplier = 1.65;
 
-    public static JLabel lblXP = new JLabel(createLevelXP +  "/" + levelRequirement + " xp to next level");
+    public static JLabel lblXP = new JLabel(createLevelXP +  "/" + xpForLevel(createLevel) + " xp to next level");
     public static JLabel lblLevel = new JLabel("Bullet Create Level: " + createLevel);
 
     public UpgradeTab() {
@@ -35,14 +33,21 @@ public class UpgradeTab extends JPanel{
     }
 
     public static boolean levelUpCreate() {
-        if(createLevelXP >= levelRequirement){
+        if(createLevelXP >= xpForLevel(createLevel)){
             createLevel++;
-            levelRequirement *= levelIncreaseMultiplier;
             createLevelXP = 0;
             return true;
         }
         return false;
 
+    }
+
+    public static double xpForLevel(int level){
+        double total = 0;
+        for(int i = 0; i < level; i++){
+            total += Math.floor(i + 300 * Math.pow(2, i/ 10.0));
+        }
+        return Math.floor(total / 10);
     }
 
 }
