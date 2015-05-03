@@ -3,6 +3,10 @@ Shooter-Tycoon
 
 Another simple clicker game, this is simply a test.
 
+----------- Version 0.0.4 Build 10 -----------
+- Fixed the bug with the bullet price increasing beyond 2 decimal places.
+- Adjusted the level increase formula. I think it's much more thought out and well implemented. Here's a basic shapshot of levels 1-8: http://puu.sh/hwVHT/92fe02ddb1.png
+
 ----------- Version 0.0.4 Build 9  ----------- 
  - Added basic infrastructure for the upgrades tab   
  - Included a leveling system for creating bullets. Leveling up lets you create one more bullet each click and increases the value of each bullet by 1.25 (Will be adjusted, just getting the basic structure in)   
