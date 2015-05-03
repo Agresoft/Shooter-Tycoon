@@ -1,5 +1,6 @@
 package Agresoft.ShooterTycoon;
 
+import Agresoft.ShooterTycoon.tabs.Skills;
 import Agresoft.ShooterTycoon.tabs.UpgradeTab;
 import Agresoft.ShooterTycoon.tabs.mainGame;
 
@@ -32,10 +33,11 @@ public class Game extends JFrame {
 
 	public static mainGame mainGame = new mainGame();
 	public static UpgradeTab upTab = new UpgradeTab();
+	public static Skills skTab = new Skills();
 
 	private static JTabbedPane pane = new JTabbedPane();
 
-	public static String VERSION = "0.0.4_10";
+	public static final String VERSION = "0.0.4_12";
 
 	public static int bulletCreateRate = 1;
 	public static double bulletSellRate = 10;
@@ -60,8 +62,7 @@ public class Game extends JFrame {
 
 		pane.add("Main", mainGame);
 		pane.add("Upgrades", upTab);
-
-
+		pane.add("Skills", skTab);
 
 		getContentPane().add(pane);
 
@@ -74,7 +75,6 @@ public class Game extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					System.out.println(upTab.xpForLevel(upTab.createLevel));
 					updateLabels();
 					Game frame = new Game();
 					frame.setVisible(true);
@@ -90,12 +90,14 @@ public class Game extends JFrame {
 
 		if (bullets + bulletCreateRate < bullet_limit) {
 			bullets += bulletCreateRate;
-			upTab.createLevelXP+= 10;
-			if(upTab.levelUpCreate()) {
-				bulletCreateRate++;
-				bulletSellRate = Math.floor(bulletSellRate *  1.25);
+			upTab.createLevelXP+= upTab.xpGain;
+			if(upTab.levelUpCreate() ) {
+				bulletSellRate = Math.floor(bulletSellRate * 1.25);
+				if(upTab.createLevel % 3 == 0)
+					bulletCreateRate++;
+				if(upTab.createLevel % 4 == 0)
+					upTab.xpGain++;
 			}
-
 		}
 		updateLabels();
 	}
@@ -113,21 +115,15 @@ public class Game extends JFrame {
 
 	}
 
-	public static void convertCents() {
-		if (cents%100 >= 0 && cents%100 <= 9){
-			cash = "$" + (cents / 100) + ".0" + (cents % 100);
-		}
-	}
-
 	public static void updateLabels() {
 		cash = "$" + (cents / 100) + "." + (cents % 100);
-		mainGame.lblMoney.setText("You have made " + cash);
-		mainGame.lblBullets.setText("You have made: " + bullets + " of " + bullet_limit + " Bullets!");
-		mainGame.lblValue.setText("Your bullets are worth: $" + (bulletSellRate / 100) + "0");
-		upTab.lblMoney2.setText("You have: " + cash + " Dollars to spend.");
-		upTab.lblXP.setText(upTab.createLevelXP +  "/" + upTab.xpForLevel(upTab.createLevel) + " xp to next level");
-		upTab.lblLevel.setText("Bullet Create Level: " + upTab.createLevel);
-		mainGame.lblBullets.setText("You have made " + bullets + " of " + bullet_limit + " Bullets!");
+		mainGame.lblMoney.setText(cash);
+		mainGame.lblBullets.setText(bullets + " of " + bullet_limit + " Bullets");
+		mainGame.lblValue.setText("Value: $" + (bulletSellRate / 100) + "0");
+		upTab.lblMoney2.setText("You have: " + cash);
+		mainGame.lblLevel.setText("Level: " + upTab.createLevel);
+		mainGame.lblLevel.setToolTipText(upTab.createLevelXP +  "/" + upTab.xpForLevel(upTab.createLevel) + " xp to next level");
+
 	}
 
 }
