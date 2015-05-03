@@ -3,6 +3,19 @@ Shooter-Tycoon
 
 Another simple clicker game, this is simply a test.
 
+----------- Version 0.0.4 Build 12 -----------
+- Further improved the leveling system by limiting the increase of bullet generation from +1 every level to +1 every 3 levels and +1 in overall xp gain every 4 levels.
+- Added Labels for current level, bullet value, and if you hover over your level with your mouse, a tooltip shows your xp.
+- Added a new class that will eventually contain a list of all skills. This will have 3 parts per skill. One for your level, one for your xp, and another for a progress bar of your progress to the next level. Possibly a dedicated art icon for each skill.
+- Continued to rework and move code around. Trying to further improve the quality of the code. As I slowly become a better and better programmer, I'm starting to catch all of my old mistakes.
+---- What's Next ----
+- A dedicated tab for your skills and skill progress!
+- Actual upgrades, I've been talking about them for a while, but now they're finally my main priority.
+- A save system! I'm not sure exactly how to do this, but I'm sure I can figure it out with Google, or someone I know.
+- Different bullet types, each with their own skill requirement. Each type will grant more xp per click and will eventually lead to the next type, and so on.
+- A better sense of progression. At the moment you're just clicking a bullet and selling them whenever you reach a certain amount. That's boring to me. This needs more progression and reason to play.
+- Backgrounds. I'm terrible at art, but I'm sure I can throw something together.
+
 ----------- Version 0.0.4 Build 10 -----------
 - Fixed the bug with the bullet price increasing beyond 2 decimal places.
 - Adjusted the level increase formula. I think it's much more thought out and well implemented. Here's a basic shapshot of levels 1-8: http://puu.sh/hwVHT/92fe02ddb1.png
