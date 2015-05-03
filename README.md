@@ -7,7 +7,7 @@ Another simple clicker game, this is simply a test.
 - Further improved the leveling system by limiting the increase of bullet generation from +1 every level to +1 every 3 levels and +1 in overall xp gain every 4 levels.
 - Added Labels for current level, bullet value, and if you hover over your level with your mouse, a tooltip shows your xp.
 - Added a new class that will eventually contain a list of all skills. This will have 3 parts per skill. One for your level, one for your xp, and another for a progress bar of your progress to the next level. Possibly a dedicated art icon for each skill.
-- Continued to rework and move code around. Trying to further improve the quality of the code. As I slowly become a better and better programmer, I'm starting to catch all of my old mistakes.
+- Continued to rework and move code around. Trying to further improve the quality of the code. As I slowly become a better and better programmer, I'm starting to catch all of my old mistakes.          
 ---- What's Next ----
 - A dedicated tab for your skills and skill progress!
 - Actual upgrades, I've been talking about them for a while, but now they're finally my main priority.
