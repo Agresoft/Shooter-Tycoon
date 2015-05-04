@@ -6,8 +6,8 @@ Another simple clicker game, this is simply a test.
 ----------- Version 0.0.5 Build 15 -----------
 - Added our first upgrade! "A new set of tools" grants +1 bullet produced per click and +25% value to each bullet. This may be adjusted in the future. Upgrade costs $25 and disappears once bought.
 - Populated the skills tab with basic information on your bullet creation skill. Will be reworked and things will be moved, I just wanted to get the basic stuff down in the tab. Proof of concept so to speak. 
-- More basic code reworking. 
-----What's Next----
+- More basic code reworking.   
+----What's Next----    
 - Even more upgrades! 
 - Persistent upgrades! Upgrades you can continue to buy for more benefits!
 - A new skill. I'm not sure how I want it to work, but I plan on making it revolve around actually selling bullets.
