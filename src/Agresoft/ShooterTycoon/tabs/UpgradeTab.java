@@ -1,7 +1,11 @@
 package Agresoft.ShooterTycoon.tabs;
 
+import Agresoft.ShooterTycoon.Game;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class UpgradeTab extends JPanel{
 
@@ -9,9 +13,21 @@ public class UpgradeTab extends JPanel{
 
     public static int createLevel = 1;
     public static long createLevelXP = 0;
-    public static int xpGain = 1;
+    public static final JButton btnUpgradeOne = new JButton("A new set of tools-$25");
+
 
     public UpgradeTab() {
+
+        btnUpgradeOne.setToolTipText("+1 bullet per click\n  " + "+ 25% bullet value");
+        btnUpgradeOne.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                upgradeOne();
+            }
+        });
+        btnUpgradeOne.setBounds(10, 40, 175, 23);
+        add(btnUpgradeOne);
+
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(null);
 
@@ -36,4 +52,13 @@ public class UpgradeTab extends JPanel{
         return Math.floor(total / 10);
     }
 
+    public static void upgradeOne() {
+        if(Game.cents >= 2500) {
+            Game.cents -= 2500;
+            Game.bulletCreateRate++;
+            Game.bulletSellRate = Math.floor(Game.bulletSellRate * 1.25);
+            btnUpgradeOne.setVisible(false);
+            Game.updateLabels();
+        }
+    }
 }

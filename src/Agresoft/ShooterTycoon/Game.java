@@ -5,28 +5,10 @@ import Agresoft.ShooterTycoon.tabs.UpgradeTab;
 import Agresoft.ShooterTycoon.tabs.mainGame;
 
 import java.awt.EventQueue;
-
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-
-import java.awt.SystemColor;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.math.BigDecimal;
 
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
-import javax.swing.JScrollBar;
-import javax.swing.JProgressBar;
 
 public class Game extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -37,11 +19,12 @@ public class Game extends JFrame {
 
 	private static JTabbedPane pane = new JTabbedPane();
 
-	public static final String VERSION = "0.0.4_12";
+	public static final String VERSION = "0.0.5_15";
 
 	public static int bulletCreateRate = 1;
 	public static double bulletSellRate = 10;
 	public static int bullets = 0;
+	public static int xpGain = 1;
 	public static long cents = 0L;
 	public static String cash = "$" + (cents / 100) + "." + (cents % 100);
 	public static int bullet_limit = 250;
@@ -87,16 +70,15 @@ public class Game extends JFrame {
 
 	// Self explanatory, adds bullets.
 	public static void addBullets() {
-
 		if (bullets + bulletCreateRate < bullet_limit) {
 			bullets += bulletCreateRate;
-			upTab.createLevelXP+= upTab.xpGain;
+			upTab.createLevelXP+= xpGain;
 			if(upTab.levelUpCreate() ) {
 				bulletSellRate = Math.floor(bulletSellRate * 1.25);
 				if(upTab.createLevel % 3 == 0)
 					bulletCreateRate++;
 				if(upTab.createLevel % 4 == 0)
-					upTab.xpGain++;
+					xpGain++;
 			}
 		}
 		updateLabels();
@@ -105,24 +87,28 @@ public class Game extends JFrame {
 	// Also pretty self explanatory, sells your current bullets.
 	public static void sellBullets() {
 		if (bullets > 0) {
-			if (cents%100 >= 0 && cents%100 <= 9){
+			if (cents%100 > 0 && cents%100 <= 9)
 				cash = "$" + (cents / 100) + ".0" + (cents % 100);
-			}
 			cents += bullets * bulletSellRate;
 			bullets = 0;
 			updateLabels();
 		}
-
 	}
 
 	public static void updateLabels() {
-		cash = "$" + (cents / 100) + "." + (cents % 100);
+		if(cents%100 > 0 && cents%100 <= 9)
+			cash = "$" + (cents / 100) + ".0" + (cents % 100);
+		else
+			cash = "$" + (cents / 100) + "." + (cents % 100);
 		mainGame.lblMoney.setText(cash);
 		mainGame.lblBullets.setText(bullets + " of " + bullet_limit + " Bullets");
 		mainGame.lblValue.setText("Value: $" + (bulletSellRate / 100) + "0");
 		upTab.lblMoney2.setText("You have: " + cash);
 		mainGame.lblLevel.setText("Level: " + upTab.createLevel);
 		mainGame.lblLevel.setToolTipText(upTab.createLevelXP +  "/" + upTab.xpForLevel(upTab.createLevel) + " xp to next level");
+		skTab.createLevelLbl.setText("Level: " + upTab.createLevel);
+		skTab.createLevelXpLbl.setText("XP To Next: " + upTab.createLevelXP + "/" + upTab.xpForLevel(upTab.createLevel));
+		skTab.createProgress.setText(Math.round(upTab.createLevelXP / (upTab.xpForLevel(upTab.createLevel)) * 100) + "% to Next Level");
 
 	}
 
