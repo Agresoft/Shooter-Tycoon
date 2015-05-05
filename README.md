@@ -3,6 +3,10 @@ Shooter-Tycoon
 
 Another simple clicker game, this is simply a test.
 
+----------- Version 0.0.5 Build 16 Hotfix #1 ---------------
+- Actually added the new art to the repo, as they were not automatically added via IntelliJ.
+- fixed a placeholder event when the first upgrade button was pressed, it disappeared. Instead now it greys out and can not be clicked again.
+
 ----------- Version 0.0.5 Build 16 -----------
 - Added some art for the sell button and the first upgrade. Yes, it's bad. No, I don't care.
 - Edited a few of the button settings to make them slightly better looking.
