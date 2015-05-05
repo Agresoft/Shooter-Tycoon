@@ -23,6 +23,8 @@ public class mainGame extends JPanel {
 
 	public static final Icon bullet_pistol_1 = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/bullets/Bullet_Pistol.png"));
 	public static final Icon bullet_pistol_2 = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/bullets/Bullet_Pistol_2.png"));
+	public static final Icon btnSell = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/buttons/btnSell.png"));
+	public static final Icon btnSellD = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/buttons/btnSellD.png"));
 
 	public JLabel lblLevel = new JLabel();
 	public JLabel lblBullets = new JLabel();
@@ -72,13 +74,15 @@ public class mainGame extends JPanel {
 		add(lblLevel);
 
 
-		JButton btnSellbutton = new JButton("Sell Bullets");
+		JButton btnSellbutton = new JButton(btnSell);
 		btnSellbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Game.sellBullets();
 			}
 		});
-		btnSellbutton.setBounds(34, 159, 113, 23);
+		btnSellbutton.setBounds(25, 145, 175, 50);
+		btnSellbutton.setRolloverEnabled(false);
+		btnSellbutton.setPressedIcon(btnSellD);
 		add(btnSellbutton);
 	}
 

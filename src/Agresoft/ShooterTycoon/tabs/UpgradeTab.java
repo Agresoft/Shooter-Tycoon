@@ -13,7 +13,11 @@ public class UpgradeTab extends JPanel{
 
     public static int createLevel = 1;
     public static long createLevelXP = 0;
-    public static final JButton btnUpgradeOne = new JButton("A new set of tools-$25");
+
+    public static final Icon btnUpOne = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/buttons/btnUpgradeOne.png"));
+    public static final Icon btnUpOneD = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/buttons/btnUpgradeOneD.png"));
+
+    public static final JButton btnUpgradeOne = new JButton(btnUpOne);
 
 
     public UpgradeTab() {
@@ -25,7 +29,9 @@ public class UpgradeTab extends JPanel{
                 upgradeOne();
             }
         });
-        btnUpgradeOne.setBounds(10, 40, 175, 23);
+        btnUpgradeOne.setBounds(10, 40, 175, 50);
+        btnUpgradeOne.setPressedIcon(btnUpOneD);
+        btnUpgradeOne.setRolloverEnabled(false);
         add(btnUpgradeOne);
 
         setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -57,7 +63,6 @@ public class UpgradeTab extends JPanel{
             Game.cents -= 2500;
             Game.bulletCreateRate++;
             Game.bulletSellRate = Math.floor(Game.bulletSellRate * 1.25);
-            btnUpgradeOne.setVisible(false);
             Game.updateLabels();
         }
     }
