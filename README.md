@@ -3,6 +3,17 @@ Shooter-Tycoon
 
 Another simple clicker game, this is simply a test.
 
+----------- Version 0.0.5 Build 15 -----------
+- Added our first upgrade! "A new set of tools" grants +1 bullet produced per click and +25% value to each bullet. This may be adjusted in the future. Upgrade costs $25 and disappears once bought.
+- Populated the skills tab with basic information on your bullet creation skill. Will be reworked and things will be moved, I just wanted to get the basic stuff down in the tab. Proof of concept so to speak. 
+- More basic code reworking.   
+----What's Next----    
+- Even more upgrades! 
+- Persistent upgrades! Upgrades you can continue to buy for more benefits!
+- A new skill. I'm not sure how I want it to work, but I plan on making it revolve around actually selling bullets.
+- A stats tab dedicated to how much you've click and different statistics about how you've played.
+- A save system.
+
 ----------- Version 0.0.4 Build 12 -----------
 - Further improved the leveling system by limiting the increase of bullet generation from +1 every level to +1 every 3 levels and +1 in overall xp gain every 4 levels.
 - Added Labels for current level, bullet value, and if you hover over your level with your mouse, a tooltip shows your xp.
