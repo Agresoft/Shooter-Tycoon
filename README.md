@@ -3,6 +3,10 @@ Shooter-Tycoon
 
 Another simple clicker game, this is simply a test.
 
+----------- Version 0.0.5 Build 16 -----------
+- Added some art for the sell button and the first upgrade. Yes, it's bad. No, I don't care.
+- Edited a few of the button settings to make them slightly better looking.
+
 ----------- Version 0.0.5 Build 15 -----------
 - Added our first upgrade! "A new set of tools" grants +1 bullet produced per click and +25% value to each bullet. This may be adjusted in the future. Upgrade costs $25 and disappears once bought.
 - Populated the skills tab with basic information on your bullet creation skill. Will be reworked and things will be moved, I just wanted to get the basic stuff down in the tab. Proof of concept so to speak. 
