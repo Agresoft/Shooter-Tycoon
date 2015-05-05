@@ -16,6 +16,7 @@ public class UpgradeTab extends JPanel{
 
     public static final Icon btnUpOne = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/buttons/btnUpgradeOne.png"));
     public static final Icon btnUpOneD = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/buttons/btnUpgradeOneD.png"));
+    public static final Icon btnUpOneDisabled = new ImageIcon(Game.class.getResource("/Agresoft/ShooterTycoon/res/buttons/btnUpgradeOneDisabled.png"));
 
     public static final JButton btnUpgradeOne = new JButton(btnUpOne);
 
@@ -32,6 +33,7 @@ public class UpgradeTab extends JPanel{
         btnUpgradeOne.setBounds(10, 40, 175, 50);
         btnUpgradeOne.setPressedIcon(btnUpOneD);
         btnUpgradeOne.setRolloverEnabled(false);
+        btnUpgradeOne.setDisabledIcon(btnUpOneDisabled);
         add(btnUpgradeOne);
 
         setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -64,6 +66,8 @@ public class UpgradeTab extends JPanel{
             Game.bulletCreateRate++;
             Game.bulletSellRate = Math.floor(Game.bulletSellRate * 1.25);
             Game.updateLabels();
+            btnUpgradeOne.setIcon(btnUpOneDisabled);
+            btnUpgradeOne.setEnabled(false);
         }
     }
 }
